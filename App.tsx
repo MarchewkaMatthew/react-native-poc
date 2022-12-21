@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Box, Container, Inner, ScreenContainer, Text } from './App.styles';
 import { createDrawerNavigator, DrawerScreenProps, DrawerNavigationProp } from '@react-navigation/drawer';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-// import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Button } from 'react-native';
 
 type MainNavigationParamList = {
@@ -11,27 +11,53 @@ type MainNavigationParamList = {
   Settings: undefined;
 };
 
-const Stack = createDrawerNavigator<MainNavigationParamList>();
+type SettingsParamList = {
+  Profile: undefined;
+  Preferences: undefined;
+};
+
+const Drawer = createDrawerNavigator<MainNavigationParamList>();
 
 const WelcomeScreen = ({navigation}: DrawerScreenProps<MainNavigationParamList>) => {
   return (
     <ScreenContainer>
-      <Text>JEBAĆ PIS</Text>
+      <Text>WELCOME</Text>
       <Box bgColor="green" />
       <Button title='Go to Settings' onPress={() => navigation.navigate('Settings')} />
     </ScreenContainer>
   )
 }
 
-const SettingsScreen = () => {
-  const navigation = useNavigation<DrawerNavigationProp<MainNavigationParamList>>();
+const ProfileScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<SettingsParamList>>();
 
   return (
     <ScreenContainer>
-      <Text>I KONFEDERACJE</Text>
-      <Box bgColor="red" />
-      <Button title='Go to Welcome' onPress={() => navigation.navigate("Welcome")} />
+      <Text>Profile</Text>
+      <Box bgColor="blue" />
+      <Button title='Go to Preferences' onPress={() => navigation.navigate("Preferences")} />
     </ScreenContainer>
+  )
+}
+
+const PreferencesScreen = () => {
+  return (
+    <ScreenContainer>
+      <Text>Preferences</Text>
+      <Box bgColor="pink" />
+    </ScreenContainer>
+  )
+}
+
+const SettingsScreen = () => {
+  const navigation = useNavigation<DrawerNavigationProp<MainNavigationParamList>>();
+  const Stack = createNativeStackNavigator<SettingsParamList>();
+
+  return (
+    <Stack.Navigator initialRouteName='Profile'>
+      <Stack.Screen name='Profile' component={ProfileScreen} />
+      <Stack.Screen name='Preferences' component={PreferencesScreen} />
+    </Stack.Navigator>
   )
 }
 
@@ -40,10 +66,10 @@ export default function App() {
     <Container>
       <Inner>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Welcome'>
-            <Stack.Screen name='Welcome' component={WelcomeScreen} />
-            <Stack.Screen name='Settings' component={SettingsScreen} />
-          </Stack.Navigator>
+          <Drawer.Navigator initialRouteName='Welcome'>
+            <Drawer.Screen name='Welcome' component={WelcomeScreen} />
+            <Drawer.Screen name='Settings' component={SettingsScreen} />
+          </Drawer.Navigator>
         </NavigationContainer>
       </Inner>
       <StatusBar style="auto" />
