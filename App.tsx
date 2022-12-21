@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { Box, Container, Inner, ScreenContainer, Text } from './App.styles';
-// import { createDrawerNavigator, DrawerScreenProps, DrawerContentComponentProps } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerScreenProps, DrawerNavigationProp } from '@react-navigation/drawer';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
+// import { createNativeStackNavigator, NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Button } from 'react-native';
 
 type MainNavigationParamList = {
@@ -11,9 +11,9 @@ type MainNavigationParamList = {
   Settings: undefined;
 };
 
-const Stack = createNativeStackNavigator<MainNavigationParamList>();
+const Stack = createDrawerNavigator<MainNavigationParamList>();
 
-const WelcomeScreen = ({navigation}: NativeStackScreenProps<MainNavigationParamList>) => {
+const WelcomeScreen = ({navigation}: DrawerScreenProps<MainNavigationParamList>) => {
   return (
     <ScreenContainer>
       <Text>JEBAĆ PIS</Text>
@@ -24,7 +24,7 @@ const WelcomeScreen = ({navigation}: NativeStackScreenProps<MainNavigationParamL
 }
 
 const SettingsScreen = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<MainNavigationParamList>>();
+  const navigation = useNavigation<DrawerNavigationProp<MainNavigationParamList>>();
 
   return (
     <ScreenContainer>
