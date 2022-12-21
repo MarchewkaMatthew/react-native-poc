@@ -9,6 +9,7 @@ import { Button } from 'react-native';
 type MainNavigationParamList = {
   Welcome: undefined;
   Settings: undefined;
+  LogOut: { test: string };
 };
 
 type SettingsParamList = {
@@ -61,6 +62,19 @@ const SettingsScreen = () => {
   )
 }
 
+const LogOutScreen = (props: DrawerScreenProps<MainNavigationParamList, "LogOut">) => {
+  const { navigation, route } = props;
+  const { name, params: { test }, path } = route;
+
+  return (
+    <ScreenContainer>
+      <Text>{name} + {test}</Text>
+      <Text>{path}</Text>
+      <Box bgColor="brown" />
+    </ScreenContainer>
+  )
+}
+
 export default function App() {
   return (
     <Container>
@@ -68,7 +82,10 @@ export default function App() {
         <NavigationContainer>
           <Drawer.Navigator initialRouteName='Welcome'>
             <Drawer.Screen name='Welcome' component={WelcomeScreen} />
-            <Drawer.Screen name='Settings' component={SettingsScreen} />
+            <Drawer.Group navigationKey='user'>
+              <Drawer.Screen name='Settings' component={SettingsScreen} />
+              <Drawer.Screen name='LogOut' component={LogOutScreen} initialParams={{ test: "elo" }} />
+            </Drawer.Group>
           </Drawer.Navigator>
         </NavigationContainer>
       </Inner>
