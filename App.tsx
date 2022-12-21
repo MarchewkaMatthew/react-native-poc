@@ -22,7 +22,7 @@ const Drawer = createDrawerNavigator<MainNavigationParamList>();
 const WelcomeScreen = ({navigation}: DrawerScreenProps<MainNavigationParamList>) => {
   return (
     <ScreenContainer>
-      <Text>WELCOME</Text>
+      <Text>WELCOMEEE</Text>
       <Box bgColor="green" />
       <Button title='Go to Settings' onPress={() => navigation.navigate('Settings')} />
     </ScreenContainer>
