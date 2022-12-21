@@ -35,5 +35,6 @@ export const Box = styled.View<BoxProps>`
 
 export const Text = styled.Text`
   color: white;
-  filter: blur(24px);
+
+  /* filter: blur(24px); */
 `;
