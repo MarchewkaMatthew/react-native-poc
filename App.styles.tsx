@@ -31,6 +31,7 @@ export const Box = styled.View<BoxProps>`
   box-shadow: 10px 5px 5px blue;
   background-color: ${(p) => p.bgColor};
   margin-top: 24px;
+  border: 1px solid white;
 `;
 
 export const Text = styled.Text`
