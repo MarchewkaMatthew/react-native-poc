@@ -12,11 +12,15 @@ Notifications.setNotificationHandler({
   }),
 });
 
+type Subscription = {
+  remove: () => void;
+};
+
 export const NotificationsScreen = () => {
-  const [expoPushToken, setExpoPushToken] = useState('');
-  const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
+  const [expoPushToken, setExpoPushToken] = useState<string>();
+  const [notification, setNotification] = useState<Notifications.Notification>();
+  const notificationListener = useRef<Subscription>();
+  const responseListener = useRef<Subscription>();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
@@ -32,8 +36,12 @@ export const NotificationsScreen = () => {
     });
 
     return () => {
-      Notifications.removeNotificationSubscription(notificationListener.current);
-      Notifications.removeNotificationSubscription(responseListener.current);
+      if(notificationListener.current) {
+        Notifications.removeNotificationSubscription(notificationListener.current);
+      }
+      if(responseListener.current) {
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
     };
   }, []);
   
@@ -50,7 +58,9 @@ export const NotificationsScreen = () => {
       <Button
         title="Press to Send Notification"
         onPress={async () => {
-          await sendPushNotification(expoPushToken);
+          if(expoPushToken) {
+            await sendPushNotification(expoPushToken);
+          }
         }}
       />
     </ScreenContainer>

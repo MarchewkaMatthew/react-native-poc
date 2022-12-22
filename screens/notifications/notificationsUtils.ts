@@ -1,5 +1,9 @@
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+import { Platform } from 'react-native';
+
 // Can use this function below, OR use Expo's Push Notification Tool-> https://expo.dev/notifications
-export async function sendPushNotification(expoPushToken) {
+export async function sendPushNotification(expoPushToken: string) {
   const message = {
     to: expoPushToken,
     sound: 'default',
