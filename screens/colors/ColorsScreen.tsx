@@ -1,12 +1,11 @@
 import { Button, FlatList } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 import { Box, ScreenContainer, Text } from "../../App.styles"
 import { setColor } from "../../store/colorSlice";
-import { RootState } from "../../store/store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const ColorsScreen = () => {
-  const colors = useSelector((state: RootState) => state.color.value);
-  const dispatch = useDispatch();
+  const colors = useAppSelector(state => state.color.value);
+  const dispatch = useAppDispatch();
 
   return (
     <ScreenContainer>
