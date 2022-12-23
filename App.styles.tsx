@@ -26,6 +26,7 @@ interface BoxProps {
 }
 
 export const Box = styled.View<BoxProps>`
+  min-width: 150px;
   width: 50%;
   height: 24px;
   box-shadow: 10px 5px 5px blue;
