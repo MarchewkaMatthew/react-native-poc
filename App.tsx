@@ -11,6 +11,7 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import { ColorsScreen } from './screens/colors/ColorsScreen';
 import { CounterScreen } from './screens/counter/CounterScreen';
+import { LinksScreen } from './screens/links/LinksScreen';
 
 export type MainNavigationParamList = {
   Welcome: undefined;
@@ -18,6 +19,7 @@ export type MainNavigationParamList = {
   Counter: undefined;
   Notifications: undefined;
   Settings: undefined;
+  Links: undefined;
   LogOut: { test: string };
 };
 
@@ -40,6 +42,7 @@ export default function App() {
               <Drawer.Screen name='Colors' component={ColorsScreen} />
               <Drawer.Screen name='Counter' component={CounterScreen} />
               <Drawer.Screen name='Settings' component={SettingsScreen} />
+              <Drawer.Screen name='Links' component={LinksScreen} />
               <Drawer.Screen name='LogOut' component={LogOutScreen} initialParams={{ test: "elo" }} />
             </Drawer.Navigator>
           </NavigationContainer>
