@@ -1,6 +1,6 @@
 import { Button, FlatList } from "react-native";
 import { Box, ScreenContainer, Text } from "../../App.styles"
-import { addColor, setColor } from "../../store/slices/colorSlice";
+import { addColor, addColorFromApi, setColor } from "../../store/slices/colorSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 export const ColorsScreen = () => {
@@ -11,6 +11,7 @@ export const ColorsScreen = () => {
     <ScreenContainer>
       <Text>Colors</Text>
       <Button title="Add red" onPress={() => dispatch(addColor("red"))} />
+      <Button title="Add color from API" onPress={() => dispatch(addColorFromApi())} />
       <Button title="Add color" onPress={() => dispatch(setColor())} />
       <FlatList
         keyExtractor={(item) => item}

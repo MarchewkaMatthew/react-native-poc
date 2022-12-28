@@ -1,4 +1,5 @@
-import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { delay } from "../../utils";
 
 interface ColorSliceState {
   value: string[];
@@ -18,6 +19,16 @@ const randomRgb = () => {
 
 export const addColor = createAction<string>('color/addColor')
 
+export const addColorFromApi = createAsyncThunk(
+  'color/addColorFromApi',
+  async (thunkAPI) => {
+    // const response = await userAPI.fetchById(userId)
+    await delay(5000);
+    return "#00FF00";
+  }
+);
+
+
 // Slice - domyślny sposób pisania logiki
 export const colorSlice = createSlice({
   name: "color",
@@ -36,6 +47,9 @@ export const colorSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addColor, (state, action) => {
+        state.value.push(action.payload);
+      })
+      .addCase(addColorFromApi.fulfilled, (state, action) => {
         state.value.push(action.payload);
       })
   }
