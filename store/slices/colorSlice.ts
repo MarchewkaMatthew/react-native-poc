@@ -1,4 +1,4 @@
-import { createAction, createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ColorSliceState {
   value: string[];
@@ -26,6 +26,12 @@ export const colorSlice = createSlice({
     setColor: (state) => {
       state.value = [...state.value, randomRgb()];
     },
+    addColorDiferently: {
+      reducer: (state, action: PayloadAction<string>) => {
+        state.value.push(action.payload)
+      },
+      prepare: (value: string) => ({ payload: value }),
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -36,6 +42,6 @@ export const colorSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setColor } = colorSlice.actions;
+export const { setColor, addColorDiferently } = colorSlice.actions;
 
 export default colorSlice.reducer;
