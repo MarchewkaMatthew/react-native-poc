@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { Container, Inner } from './App.styles';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, NavigatorScreenParams, ParamListBase } from '@react-navigation/native';
 import { WelcomeScreen } from './screens/welcome/WelcomeScreen';
 import { LogOutScreen } from './screens/logOut/LogOutScreen';
 import { SettingsScreen } from './screens/settings/SettingsScreen';
@@ -18,7 +18,7 @@ export type MainNavigationParamList = {
   Colors: undefined;
   Counter: undefined;
   Notifications: undefined;
-  Settings: undefined;
+  Settings: NavigatorScreenParams<SettingsParamList>;
   Links: undefined;
   LogOut: { test: string };
 };
