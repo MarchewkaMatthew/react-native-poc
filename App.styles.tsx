@@ -52,3 +52,11 @@ export const FullWidthImage = styled.Image`
   aspect-ratio: 1/1;
   border: 1px solid blue;
 `
+
+export const Ball = styled.View`
+  width: 96px;
+  height: 96px;
+  border-radius: 100%;
+  background-color: blue;
+  margin-top: 24px;
+`
