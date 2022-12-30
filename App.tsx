@@ -12,14 +12,16 @@ import { Provider } from "react-redux";
 import { ColorsScreen } from './screens/colors/ColorsScreen';
 import { CounterScreen } from './screens/counter/CounterScreen';
 import { LinksScreen } from './screens/links/LinksScreen';
+import { PokemonScreen } from './screens/pokemon/PokemonScreen';
 
 export type MainNavigationParamList = {
   Welcome: undefined;
   Colors: undefined;
   Counter: undefined;
   Notifications: undefined;
-  Settings: NavigatorScreenParams<SettingsParamList>;
+  Settings: NavigatorScreenParams<SettingsParamList> | undefined;
   Links: undefined;
+  Pokemon: undefined;
   LogOut: { test: string };
 };
 
@@ -43,6 +45,7 @@ export default function App() {
               <Drawer.Screen name='Counter' component={CounterScreen} />
               <Drawer.Screen name='Settings' component={SettingsScreen} />
               <Drawer.Screen name='Links' component={LinksScreen} />
+              <Drawer.Screen name='Pokemon' component={PokemonScreen} />
               <Drawer.Screen name='LogOut' component={LogOutScreen} initialParams={{ test: "elo" }} />
             </Drawer.Navigator>
           </NavigationContainer>

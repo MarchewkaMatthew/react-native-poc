@@ -42,3 +42,9 @@ export const Text = styled.Text`
 export const Space = styled.View`
   margin: 16px;
 `
+
+export const FullWidthImage = styled.Image`
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 1px solid blue;
+`
