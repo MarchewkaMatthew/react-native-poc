@@ -1,16 +1,18 @@
 import { Button } from "react-native";
-import { PanGestureHandler } from "react-native-gesture-handler";
-import Animated, { Easing, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
-import { SecondaryBox, ScreenContainer, Text, BoxProps, Ball } from "../../App.styles"
+import { PanGestureHandler, PanGestureHandlerGestureEvent } from "react-native-gesture-handler";
+import Animated, { Easing, SlideInRight, SlideOutLeft, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated";
+import { SecondaryBox, ScreenContainer, Text, BoxProps, Ball, Box } from "../../App.styles"
+import { TertiaryBox } from "./AnimationsScreen.styles";
 
-const AnimatedBox = Animated.createAnimatedComponent<BoxProps>(SecondaryBox);
+const AnimatedBox = Animated.createAnimatedComponent(Box);
+const SecondaryAnimatedBox = Animated.createAnimatedComponent<BoxProps>(SecondaryBox);
 const AnimatedBall = Animated.createAnimatedComponent(Ball)
 
 export const AnimationsScreen = () => {
   const startingTranslate = 0;
   const x = useSharedValue(startingTranslate);
   const y = useSharedValue(startingTranslate);
-  const randomWidth = useSharedValue(10);
+  const randomWidth = useSharedValue(128);
   const pressed = useSharedValue(false);
 
   const config = {
@@ -30,30 +32,30 @@ export const AnimationsScreen = () => {
     };
   });
 
-  const eventHandler = useAnimatedGestureHandler({
+  const eventHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, {startX: number, startY: number}>({
     onStart: (event, ctx) => {
       pressed.value = true;
+      ctx.startX = x.value;
+      ctx.startY = y.value;
     },
-    onActive(event, context) {
-      x.value = event.translationX;
-      y.value = event.translationY;
+    onActive(event, ctx) {
+      x.value = ctx.startX + event.translationX;
+      y.value = ctx.startY + event.translationY;
     },
     onEnd: (event, ctx) => {
       pressed.value = false;
-      x.value = withSpring(startingTranslate);
-      y.value = withSpring(startingTranslate);
+      // x.value = withSpring(startingTranslate);
+      // y.value = withSpring(startingTranslate);
     },
   });
 
   const ballStyle = useAnimatedStyle(() => {
-    console.log(x.value, y.value)
-
     return {
       backgroundColor: pressed.value ? '#FEEF86' : '#001972',
       transform: [
-        { scale: withSpring(pressed.value ? 1.2 : 1) },
         { translateX: withSpring(x.value) },
         { translateY: withSpring(y.value) },
+        { scale: withSpring(pressed.value ? 1.2 : 1) },
       ],
     };
   });
@@ -61,13 +63,16 @@ export const AnimationsScreen = () => {
   return (
     <ScreenContainer>
       <Text>Animations</Text>
-      <AnimatedBox bgColor="red" style={style} />
+      {/* DELAY FOR entering and exiting animation, can be used for lists */}
+      <AnimatedBox bgColor="gold" entering={SlideInRight.delay(2000)} exiting={SlideOutLeft} />
+      <SecondaryAnimatedBox bgColor="red" style={style} />
+      <TertiaryBox bgColor="brown" style={style} />
       <Button
         title="toggle"
         onPress={() => {
           randomWidth.value = Math.random() * 350;
         }}
-      />
+        />
       <PanGestureHandler onGestureEvent={eventHandler}>
         <AnimatedBall style={ballStyle} />
       </PanGestureHandler>
