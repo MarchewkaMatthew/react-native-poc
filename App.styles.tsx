@@ -21,7 +21,7 @@ export const Inner = styled.View`
   border: 1px solid white;
 `;
 
-interface BoxProps {
+export interface BoxProps {
   bgColor: string;
 }
 
@@ -34,6 +34,10 @@ export const Box = styled.View<BoxProps>`
   margin-top: 24px;
   border: 1px solid white;
 `;
+
+export const SecondaryBox = styled(Box)`
+  min-width: null;  // ?
+`
 
 export const Text = styled.Text`
   color: white;

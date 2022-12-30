@@ -13,6 +13,7 @@ import { ColorsScreen } from './screens/colors/ColorsScreen';
 import { CounterScreen } from './screens/counter/CounterScreen';
 import { LinksScreen } from './screens/links/LinksScreen';
 import { PokemonScreen } from './screens/pokemon/PokemonScreen';
+import { AnimationsScreen } from './screens/animations/AnimationsScreen';
 
 export type MainNavigationParamList = {
   Welcome: undefined;
@@ -22,6 +23,7 @@ export type MainNavigationParamList = {
   Settings: NavigatorScreenParams<SettingsParamList> | undefined;
   Links: undefined;
   Pokemon: undefined;
+  Animations: undefined;
   LogOut: { test: string };
 };
 
@@ -46,6 +48,7 @@ export default function App() {
               <Drawer.Screen name='Settings' component={SettingsScreen} />
               <Drawer.Screen name='Links' component={LinksScreen} />
               <Drawer.Screen name='Pokemon' component={PokemonScreen} />
+              <Drawer.Screen name='Animations' component={AnimationsScreen} />
               <Drawer.Screen name='LogOut' component={LogOutScreen} initialParams={{ test: "elo" }} />
             </Drawer.Navigator>
           </NavigationContainer>
