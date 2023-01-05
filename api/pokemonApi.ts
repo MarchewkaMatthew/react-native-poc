@@ -25,6 +25,7 @@ interface Pokemon {
 
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
+  refetchOnReconnect: true,
   baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
   endpoints: (builder) => ({
     getPokemonByName: builder.query<Pokemon, { name: string }>({
