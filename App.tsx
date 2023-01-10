@@ -16,6 +16,8 @@ import { PokemonScreen } from './screens/pokemon/PokemonScreen';
 import { AnimationsScreen } from './screens/animations/AnimationsScreen';
 import { LocalizationScreen } from './screens/localization/LocalizationScreen';
 
+import "./setupTranslations";
+
 export type MainNavigationParamList = {
   Welcome: undefined;
   Colors: undefined;
