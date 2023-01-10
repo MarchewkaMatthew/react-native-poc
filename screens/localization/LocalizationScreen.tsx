@@ -13,7 +13,7 @@ export const LocalizationScreen = () => {
     <ScreenContainer>
       <Text>Localization {deviceLanguage}</Text>
       <Text>{t("previous")}</Text>
-      <Text>{t("landing:welcomeText")}</Text>
+      <Text>{t("landing:welcomeText", { name: "Mateusz"})}</Text>
       <Box bgColor="pink" />
     </ScreenContainer>
   )
