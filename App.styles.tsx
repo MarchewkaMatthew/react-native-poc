@@ -56,7 +56,7 @@ export const FullWidthImage = styled.Image`
 export const Ball = styled.View`
   width: 96px;
   height: 96px;
-  border-radius: 100%;
+  border-radius: 96px;
   background-color: blue;
   margin-top: 24px;
 `
