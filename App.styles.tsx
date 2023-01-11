@@ -49,8 +49,13 @@ export const Space = styled.View`
 
 export const FullWidthImage = styled.Image`
   width: 100%;
-  aspect-ratio: 1/1;
   border: 1px solid blue;
+`
+
+export const AspectRatioTest = styled.View`
+  width: 100%;
+  aspect-ratio: 1.5;
+  border: 1px solid red;
 `
 
 export const Ball = styled.View`

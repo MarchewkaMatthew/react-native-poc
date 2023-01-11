@@ -1,5 +1,5 @@
 import { useGetPokemonByNameQuery } from "../../api/pokemonApi";
-import { Box, FullWidthImage, ScreenContainer, Text } from "../../App.styles"
+import { AspectRatioTest, Box, FullWidthImage, ScreenContainer, Text } from "../../App.styles"
 
 export const PokemonScreen = () => {
   const { data, error, isLoading } = useGetPokemonByNameQuery({name: 'pikachu'});
@@ -26,6 +26,9 @@ export const PokemonScreen = () => {
       <FullWidthImage
         source={{
           uri: sprites.front_default,
+        }}
+        style={{
+          aspectRatio: 4/3
         }}
       />
       <Text>{name}</Text>
