@@ -37,6 +37,16 @@
       "eas": {
         "projectId": "ca855ee5-0e9e-446d-ac4e-4f7f49fdc463"
       }
+    },
+    "plugins": [
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps"
+        }
+      ]
     }
   }
 }

@@ -1,5 +1,7 @@
+import React from "react";
+import { Button } from "react-native";
 import { useGetPokemonByNameQuery } from "../../api/pokemonApi";
-import { AspectRatioTest, Box, FullWidthImage, ScreenContainer, Text } from "../../App.styles"
+import { Box, FullWidthImage, ScreenContainer, Text } from "../../App.styles"
 
 export const PokemonScreen = () => {
   const { data, error, isLoading } = useGetPokemonByNameQuery({name: 'pikachu'});
@@ -21,16 +23,21 @@ export const PokemonScreen = () => {
   
   console.log(sprites.front_default);
 
+  const handlePress = () => {
+    throw new Error("This is the test error")
+  }
+
   return (
     <ScreenContainer>
       <FullWidthImage
         source={{
           uri: sprites.front_default,
         }}
-        style={{
-          aspectRatio: 4/3
-        }}
+        // style={{
+        //   aspectRatio: "4/3"
+        // }}
       />
+      <Button title="Brake the app" onPress={handlePress} />
       <Text>{name}</Text>
       <Text>{id}</Text>
       <Box bgColor="gold" />

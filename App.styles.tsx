@@ -50,6 +50,8 @@ export const Space = styled.View`
 export const FullWidthImage = styled.Image`
   width: 100%;
   border: 1px solid blue;
+
+  /* aspect-ratio: 4/3; */
 `
 
 export const AspectRatioTest = styled.View`
