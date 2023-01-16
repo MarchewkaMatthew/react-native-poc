@@ -72,11 +72,4 @@ export const StyledButton = styled.TouchableOpacity`
   background-color: #009688;
   padding: 10px 24px;
   border-radius: 10px;
-
-  > * {
-    color: white;
-    font-size: 18px;
-    align-self: center;
-    text-transform: uppercase;
-  }
 `

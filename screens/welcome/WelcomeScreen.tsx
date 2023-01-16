@@ -2,7 +2,7 @@ import { DrawerScreenProps } from "@react-navigation/drawer"
 import { useEffect, useState } from "react"
 import { Alert, Button, Platform } from "react-native"
 import { MainNavigationParamList } from "../../App"
-import { Box, ScreenContainer, Text } from "../../App.styles"
+import { Box, ScreenContainer, StyledButton, Text } from "../../App.styles"
 import * as LocalAuthentication from 'expo-local-authentication';
 
 type BiometricAuthStatus = {type: "PENDING"} | { type: "SUCCESS" } | { type: "FAILED", message: string };
@@ -59,7 +59,9 @@ export const WelcomeScreen = ({navigation}: DrawerScreenProps<MainNavigationPara
       )}
       {biometricAuthStatus.type === "SUCCESS" && <Text>Authenticated successfully</Text>}
       <Box bgColor="green" />
-      <Button title='Go to Settings' onPress={() => navigation.navigate('Settings')} />
+      <StyledButton onPress={() => navigation.navigate('Settings')}>
+        <Text>Go to settings</Text>
+      </StyledButton>
     </ScreenContainer>
   )
 }
