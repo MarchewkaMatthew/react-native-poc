@@ -36,7 +36,7 @@ export const Box = styled.View<BoxProps>`
 `;
 
 export const SecondaryBox = styled(Box)`
-  min-width: null;  // ?
+  min-width: null; /* ? */
 `
 
 export const Text = styled.Text`
@@ -50,6 +50,7 @@ export const Space = styled.View`
 export const FullWidthImage = styled.Image`
   width: 100%;
   border: 1px solid blue;
+  aspect-ratio: 1.33;
 
   /* aspect-ratio: 4/3; */
 `
@@ -72,4 +73,6 @@ export const StyledButton = styled.TouchableOpacity`
   background-color: #009688;
   padding: 10px 24px;
   border-radius: 10px;
+  font-weight: 100;
+  word-wrap: wrap;
 `

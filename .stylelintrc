@@ -1,14 +1,9 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-config-recommended",
-    "stylelint-config-styled-components"
-  ],
-  "customSyntax": "postcss-styled",
-  "plugins": ["stylelint-react-native"],
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": ["stylelint-config-react-native-styled-components"],
   "rules": {
     "react-native/css-property-no-unknown": true,
     "react-native/font-weight-no-ignored-values": true,
-    "no-empty-first-line": false
+    "no-empty-first-line": null
   }
 }
