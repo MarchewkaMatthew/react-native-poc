@@ -1,6 +1,11 @@
 {
-  "processors": ["stylelint-processor-styled-components"],
-  "extends": ["stylelint-config-react-native-styled-components"],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components", 
+    "stylelint-config-prettier"
+  ],
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "plugins": ["stylelint-react-native"],
   "rules": {
     "react-native/css-property-no-unknown": true,
     "react-native/font-weight-no-ignored-values": true,
